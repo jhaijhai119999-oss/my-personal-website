@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hunter × Hunter Profile System</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+/* INTRO SCREEN */
+#intro{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:radial-gradient(circle,#0a0a0a,#000);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+    color:#7CFC00;
+    text-align:center;
+}
+
+#intro h1{
+    font-size:2.5rem;
+    margin-bottom:20px;
+    text-shadow:0 0 20px #7CFC00;
+}
+
+#intro button{
+    padding:12px 25px;
+    font-size:1.1rem;
+    background:transparent;
+    border:2px solid #7CFC00;
+    color:#7CFC00;
+    cursor:pointer;
+    border-radius:10px;
+    transition:0.3s;
+}
+
+#intro button:hover{
+    background:#7CFC00;
+    color:black;
+}
+
+/* VIDEO BACKGROUND */
+.video-bg{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    z-index:-2;
+}
+
+/* DARK OVERLAY */
+.overlay{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.65);
+    z-index:-1;
+}
+
+body{
+    color:white;
+    text-align:center;
+}
+
+/* BURGER MENU */
+.burger-menu{
+    display:flex;
+    position:fixed;
+    top:20px;
+    right:20px;
+    z-index:1000;
+    background:rgba(0,0,0,0.8);
+    border:2px solid #7CFC00;
+    box-shadow:0 0 10px #7CFC00;
+    border-radius:5px;
+    cursor:pointer;
+    padding:10px;
+    flex-direction:column;
+    gap:5px;
+}
+
+.burger-menu span{
+    display:block;
+    width:25px;
+    height:3px;
+    background:#7CFC00;
+    transition:0.3s;
+}
+
+.nav-menu{
+    position:fixed;
+    top:0;
+    right:-250px;
+    width:250px;
+    height:100%;
+    background:rgba(5,10,5,.95);
+    border-left:2px solid #7CFC00;
+    box-shadow:-5px 0 15px rgba(124,252,0,.3);
+    z-index:999;
+    transition:.3s;
+    padding-top:80px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+.nav-menu.active{
+    right:0;
+}
+
+.nav-menu a{
+    color:white;
+    padding:15px;
+    font-size:1.1rem;
+    width:100%;
+    display:block;
+    border-bottom:1px solid rgba(124,252,0,.2);
+    cursor:pointer;
+    transition:.3s;
+}
+
+.nav-menu a:hover{
+    background:rgba(124,252,0,.1);
+    color:#7CFC00;
+}
+
+.card{
+    display:none;
+    width:80%;
+    margin:20px auto;
+    padding:25px;
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(124,252,0,.3);
+    border-radius:20px;
+    box-shadow:0 0 20px rgba(124,252,0,.3);
+    backdrop-filter: blur(5px);
+}
+
+#profileCard{ display:block; }
+
+h1{
+    color:#7CFC00;
+    text-shadow:0 0 15px #7CFC00;
+    margin:20px;
+}
+
+h2{
+    color:#ADFF2F;
+    margin-bottom:15px;
+}
+
+img{
+    border:4px solid #7CFC00;
+    border-radius:20px;
+    box-shadow:0 0 20px #7CFC00;
+    max-width:100%;
+    height:auto;
+}
+
+.skill{
+    width:80%;
+    background:#222;
+    border-radius:20px;
+    margin:auto;
+}
+
+.bar{
+    height:20px;
+    border-radius:20px;
+    background:linear-gradient(90deg,#7CFC00,#ADFF2F);
+}
+
+a{
+    color:#7CFC00;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+ul,ol{
+    display:inline-block;
+    text-align:left;
+}
+
+p{
+    line-height:1.8;
+}
+</style>
+</head>
+
+<body>
+
+<!-- INTRO -->
+<div id="intro">
+    <h1>Welcome to my website</h1>
+    <button onclick="enterSite()">Enter Website</button>
+</div>
+
+<video class="video-bg" autoplay muted loop>
+    <source src="video/huntervideo.mp4" type="video/mp4">
+</video>
+
+<div class="overlay"></div>
+
+<div class="burger-menu" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+</div>
+
+<nav class="nav-menu" id="navMenu">
+    <a onclick="showSection('profileCard')">Main Identity</a>
+    <a onclick="showSection('about')">About Me</a>
+    <a onclick="showSection('hobbies')">Hobbies</a>
+    <a onclick="showSection('websites')">Websites</a>
+    <a onclick="showSection('quote')">Favorite Quote</a>
+    <a onclick="showSection('court')">My Story</a>
+    <a onclick="showSection('skills')">My Skills</a>
+</nav>
+
+<h1>⚡ HUNTER × HUNTER PROFILE ⚡</h1>
+
+<div class="card" id="profileCard">
+<h2>JHON EUBERT CUDADA</h2>
+<img src="photo/choy.jpg" width="260" height="320" alt="Profile Picture">
+<p style="margin-top:15px;color:#7CFC00;">
+← Use the top-right menu to explore licenses and records.
+</p>
+</div>
+
+<div class="card" id="about">
+<h2>ABOUT ME</h2>
+<p>
+Hi! My name is <b>Jhon Eubert Cudada</b>. I am a student who enjoys
+playing basketball, playing video games, and listening to music.
+I love spending time doing the things that make me happy and trying new things every day.
+</p>
+</div>
+
+<div class="card" id="hobbies">
+    <h2>MY HOBBIES</h2>
+    
+    <ul>
+    <li>🏀 Playing Basketball</li>
+    <li>🎮 Playing Video Games</li>
+    <li>🎵 Listening to Music</li>
+    </ul>
+    
+    <br><br>
+    
+    <h2>🎵 MY MUSIC VIDEOS</h2>
+    
+    <video controls width="100%" style="
+    max-width:700px;
+    border:3px solid #7CFC00;
+    border-radius:15px;
+    box-shadow:0 0 15px #7CFC00;
+    margin-bottom:20px;
+    ">
+        <source src="video/oasis1.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    
+    <br>
+    
+    <video controls width="100%" style="
+    max-width:700px;
+    border:3px solid #7CFC00;
+    border-radius:15px;
+    box-shadow:0 0 15px #7CFC00;
+    ">
+        <source src="video/eheads.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    
+    <br><br>
+    
+    <p style="color:#7CFC00;">
+    These are some of my favorite music videos.
+    </p>
+    
+    </div>
+
+<div class="card" id="websites">
+<h2>MY FAVORITE WEBSITES</h2>
+<p>
+<a href="https://www.tiktok.com" target="_blank">TikTok</a><br><br>
+<a href="https://www.instagram.com" target="_blank">Instagram</a>
+</p>
+</div>
+
+<div class="card" id="quote">
+<h2>FAVORITE QUOTE</h2>
+<p><i>
+"Enjoy the little detours. To the fullest. Because that's where you'll find the things more important than what you want."
+</i></p>
+<br>
+<b>— Ging Freecss</b>
+</div>
+
+<div class="card" id="court">
+<h2>MY MEMORABLE SCHOOL COVERED COURT</h2>
+
+<img src="photo/CoveredCourt.jpg" width="600" height="400" alt="Covered Court">
+
+<p style="margin-top:20px; text-align:justify;">
+    <strong>Our school covered court is one of the most memorable places for me.</strong><br><br>
+
+    It is not just a place where students gather, but it is also where many important events and unforgettable memories are made.
+    Throughout the years, our covered court has been the venue for flag ceremonies, intramurals, recognition programs, Christmas parties,
+    school performances, and many other activities.<br><br>
+    
+    <em>Every event held in our covered court brought happiness and excitement to me and my classmates.</em>
+    
+    I always enjoyed cheering during sports competitions, watching performances, and celebrating achievements together with my friends and teachers.
+    These moments helped strengthen our friendship and taught us the value of teamwork and unity.<br><br>
+    
+    Whenever I see our covered court, I remember the laughter, fun, and memories that we shared there.
+    It is more than just a place for activities—it symbolizes friendship, school spirit, and experiences that I will always treasure.
+    Even after I graduate, the memories created in our school's covered court will remain special in my heart.
+    </p>
+</div>
+
+<div class="card" id="skills">
+<h2>MY SKILLS</h2>
+
+<p>Basketball</p>
+<div class="skill"><div class="bar" style="width:90%;"></div></div>
+
+<br>
+
+<p>Gaming</p>
+<div class="skill"><div class="bar" style="width:95%;"></div></div>
+
+<br>
+
+<p>Music</p>
+<div class="skill"><div class="bar" style="width:85%;"></div></div>
+</div>
+
+<footer style="margin:30px;color:#90EE90;">
+© 2026 Jhon Eubert Cudada | Hunter × Hunter Personal Profile
+<br><br>
+<b>Thank you for visiting my personal profile page!</b>
+</footer>
+
+<script>
+function toggleMenu(){
+    document.getElementById("navMenu").classList.toggle("active");
+}
+
+function showSection(sectionId){
+    let cards=document.getElementsByClassName("card");
+
+    for(let i=0;i<cards.length;i++){
+        cards[i].style.display="none";
+    }
+
+    document.getElementById(sectionId).style.display="block";
+    toggleMenu();
+}
+
+function enterSite(){
+    document.getElementById("intro").style.display="none";
+}
+</script>
+
+</body>
+</html>
